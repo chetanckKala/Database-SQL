@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link rel="stylesheet" href="/users.css">
+</head>
+
+<body>
+
+    <div id="nav">
+
+        <h3>Total Users: <%= result.length  %></h3>
+
+        <form method="get" action="/users/new">
+            <button>Add User</button>
+        </form>
+
+    </div>
+    
+    <div id="main">
+        <table>
+            <tr id="thead">
+                <th>ID</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+            
+            <% for (let i=0; i<result.length; i++) { %>
+            <tr>
+                <td><%= result[i].id %></td>
+                <td><%= result[i].username %></td>
+                <td><%= result[i].email %></td>
+                <td><form method="get" action="/users/<%= result[i].id %>/edit">
+                    <button>Edit</button>
+                </form></td>
+                <td><form method="post" action="/users/<%= result[i].id %>?_method=delete">
+                    <button>Delete</button>
+                </form></td>
+            </tr>
+            <% } %>
+        </table>
+    </div>
+    
+</body>
+</html>
